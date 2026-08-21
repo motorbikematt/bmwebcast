@@ -1,45 +1,1114 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Live Webcast</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #111;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .bg-art {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90vw;
-    max-height: 90vh;
-    filter: invert(1);
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  h1 {
-    position: relative;
-    font-size: 2rem;
-    font-weight: normal;
-    text-shadow: 0 0 20px #111, 0 0 20px #111, 0 0 20px #111;
-  }
-</style>
+  <!-- Google tag (gtag.js) is loaded dynamically from content.md's google_analytics_id -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+  </script>
+  <meta charset="utf-8">
+  <title>Support the Live Webcast | Donations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support the Burning Man Live Webcast operations, camera infrastructure, and connectivity.">
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --card-bg: rgba(24, 28, 36, 0.94);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --venmo-blue: #008cff;
+      --venmo-blue-hover: #0070cc;
+      --cashapp-green: #00d632;
+      --cashapp-green-hover: #00b82b;
+      --paypal-blue: #0070ba;
+      --paypal-blue-hover: #005a96;
+      --zelle-purple: #7414ca;
+      --zelle-purple-hover: #5d0fa3;
+      --success-green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .bg-art {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1100px;
+      opacity: 0.4;
+      filter: invert(1);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 9999px;
+      margin-bottom: 0.85rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 660px;
+      margin: 0 auto 1.75rem;
+    }
+
+    /* Contribution Amount Selector Bar */
+    .amount-selector-wrapper {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      margin: 0 auto 2.25rem;
+      max-width: 840px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .amount-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .amount-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .amount-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 0.65rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 75px;
+    }
+
+    .amount-btn:hover {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .amount-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000000;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    }
+
+    .custom-amount-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 0.4rem 0.85rem;
+      height: 48px;
+      min-width: 110px;
+    }
+
+    .custom-amount-wrapper span {
+      font-weight: 700;
+      color: var(--accent);
+      margin-right: 4px;
+    }
+
+    .custom-amount-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      width: 80px;
+    }
+
+    /* Above the fold: Interactive Donation Cards Grid */
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    .donation-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .donation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    .donation-card.venmo { border-top: 4px solid var(--venmo-blue); }
+    .donation-card.cashapp { border-top: 4px solid var(--cashapp-green); }
+    .donation-card.paypal { border-top: 4px solid var(--paypal-blue); }
+    .donation-card.zelle { border-top: 4px solid var(--zelle-purple); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .service-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .title-venmo { color: var(--venmo-blue); }
+    .title-cashapp { color: var(--cashapp-green); }
+    .title-paypal { color: #38bdf8; }
+    .title-zelle { color: #c084fc; }
+
+    /* Action Buttons (1-Click) */
+    .action-btn {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-venmo {
+      background: var(--venmo-blue-hover);
+    }
+    .btn-venmo:hover {
+      background: #005fae;
+      box-shadow: 0 6px 18px rgba(0, 140, 255, 0.4);
+    }
+
+    .btn-cashapp {
+      background: var(--cashapp-green);
+      color: #000000;
+    }
+    .btn-cashapp:hover {
+      background: var(--cashapp-green-hover);
+      box-shadow: 0 6px 18px rgba(0, 214, 50, 0.4);
+    }
+
+    .btn-paypal {
+      background: var(--paypal-blue);
+    }
+    .btn-paypal:hover {
+      background: var(--paypal-blue-hover);
+      box-shadow: 0 6px 18px rgba(0, 112, 186, 0.4);
+    }
+
+    .btn-zelle {
+      background: var(--zelle-purple);
+    }
+    .btn-zelle:hover {
+      background: var(--zelle-purple-hover);
+      box-shadow: 0 6px 18px rgba(116, 20, 202, 0.4);
+    }
+
+    .btn-copied {
+      background: var(--success-green) !important;
+      color: #ffffff !important;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4) !important;
+    }
+
+    /* Recipient Handle Box */
+    .handle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.85rem;
+      gap: 0.5rem;
+    }
+
+    .handle-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .payment-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 1.25rem auto;
+      line-height: 1.5;
+    }
+
+    .payment-note:empty {
+      display: none;
+    }
+
+    .copy-icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 6px;
+      color: #ffffff;
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .copy-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Toggle QR Code View */
+    .qr-toggle-btn {
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      transition: all 0.2s ease;
+    }
+
+    .qr-toggle-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .qr-expandable {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, margin-top 0.35s ease;
+      margin-top: 0;
+    }
+
+    .qr-expandable.open {
+      max-height: 260px;
+      margin-top: 1rem;
+    }
+
+    .qr-box {
+      width: 100%;
+      max-width: 190px;
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 8px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      position: relative;
+    }
+
+    .qr-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .qr-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.5rem;
+      background: #f9fafb;
+      border-radius: 6px;
+      border: 2px dashed #cbd5e1;
+      color: #475569;
+    }
+
+    .qr-placeholder svg {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 0.25rem;
+      opacity: 0.75;
+      fill: currentColor;
+    }
+
+    .qr-placeholder span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Below the fold: Description Section */
+    .description-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .description-content p {
+      margin-bottom: 1.15rem;
+      font-size: 1.02rem;
+      color: #d1d5db;
+      line-height: 1.75;
+    }
+
+    .description-content ul, .description-content ol {
+      margin: 1rem 0 1.25rem 1.5rem;
+      color: #d1d5db;
+    }
+
+    .description-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .description-content a:hover {
+      color: #ffffff;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .breakdown-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+    }
+
+    .breakdown-item h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .breakdown-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .breakdown-closing {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(245, 158, 11, 0.06);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .breakdown-closing p {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .breakdown-note {
+      margin-top: 1.25rem;
+      padding: 1rem 0 0;
+      border-top: 1px dashed var(--card-border);
+      text-align: center;
+    }
+
+    .breakdown-note h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .breakdown-note p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.75rem 1rem 3rem;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      .amount-pills {
+        gap: 0.4rem;
+      }
+      .amount-btn {
+        min-width: 60px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+      }
+      .description-section {
+        padding: 1.75rem 1.25rem;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js" integrity="sha384-+pxiN6T7yvpryuJmE1gM9PX7yQit15auDb+ZwwvJOd/4be2Cie5/IuVXgQb/S9du" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" integrity="sha384-+VfUPEb0PdtChMwmBcBmykRMDd+v6D/oFmB3rZM/puCMDYcIvF968OimRh4KQY9a" crossorigin="anonymous"></script>
 </head>
 <body>
   <img class="bg-art" src="bg-composite.png" alt="">
-  <h1>Coming soon</h1>
+
+  <div class="container">
+    <header>
+      <div class="badge" id="site-badge">13 Years Support Remote Participation</div>
+      <h1 id="site-title">Support the Live Webcast Team</h1>
+      <p class="subtitle" id="site-subtitle">Help keep the 24/7 live stream running from the Black Rock Desert. Your gift directly supports the broadcast, camera infrastructure, and volunteer crew.</p>
+
+      <!-- Contribution Amount Selector -->
+      <div class="amount-selector-wrapper">
+        <div class="amount-label">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          Select Contribution Amount
+        </div>
+        <div class="amount-pills">
+          <button class="amount-btn" data-amount="15" onclick="setDonationAmount(15, this)">$15</button>
+          <button class="amount-btn active" data-amount="35" onclick="setDonationAmount(35, this)">$35</button>
+          <button class="amount-btn" data-amount="75" onclick="setDonationAmount(75, this)">$75</button>
+          <button class="amount-btn" data-amount="150" onclick="setDonationAmount(150, this)">$150</button>
+          <button class="amount-btn" data-amount="250" onclick="setDonationAmount(250, this)">$250</button>
+          <div class="custom-amount-wrapper">
+            <span>$</span>
+            <input type="number" id="custom-amount-input" class="custom-amount-input" placeholder="Custom" min="1" oninput="setCustomAmount(this.value)">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Above the fold: Interactive 1-Click Cards Grid -->
+    <section class="donation-grid">
+      <!-- Venmo Card -->
+      <div class="donation-card venmo">
+        <div class="card-header">
+          <span class="service-title title-venmo">Venmo</span>
+        </div>
+        
+        <a id="venmo-action-link" href="#" target="_blank" class="action-btn btn-venmo" onclick="handleVenmoClick(event)">
+          <span id="venmo-btn-text">Gift $35 with Venmo</span>
+        </a>
+
+        <div class="handle-row">
+          <span class="handle-text" id="venmo-handle">@motorbikematt</span>
+          <button class="copy-icon-btn" onclick="copyText('venmo-handle', 'Venmo Handle')">Copy</button>
+        </div>
+
+        <button class="qr-toggle-btn" onclick="toggleQR('venmo-qr')">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+          <span>Click here to view QR Code</span>
+        </button>
+
+        <div id="venmo-qr" class="qr-expandable">
+          <div class="qr-box">
+            <img id="venmo-img" class="qr-img" src="qr-venmo.png" alt="Venmo QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="qr-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+              <span>Drop Venmo QR</span>
+              <small id="venmo-filename">qr-venmo.png</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cash App Card -->
+      <div class="donation-card cashapp">
+        <div class="card-header">
+          <span class="service-title title-cashapp">Cash App</span>
+        </div>
+
+        <a id="cashapp-action-link" href="#" target="_blank" class="action-btn btn-cashapp" onclick="handleCashAppClick(event)">
+          <span id="cashapp-btn-text">Gift $35 with Cash App</span>
+        </a>
+
+        <div class="handle-row">
+          <span class="handle-text" id="cashapp-handle">$motorbikematt</span>
+          <button class="copy-icon-btn" onclick="copyText('cashapp-handle', 'Cash App Cashtag')">Copy</button>
+        </div>
+
+        <button class="qr-toggle-btn" onclick="toggleQR('cashapp-qr')">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+          <span>Click here to view QR Code</span>
+        </button>
+
+        <div id="cashapp-qr" class="qr-expandable">
+          <div class="qr-box">
+            <img id="cashapp-img" class="qr-img" src="qr-cashapp.png" alt="Cash App QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="qr-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+              <span>Drop Cash App QR</span>
+              <small id="cashapp-filename">qr-cashapp.png</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PayPal Card -->
+      <div class="donation-card paypal">
+        <div class="card-header">
+          <span class="service-title title-paypal">PayPal</span>
+        </div>
+
+        <a id="paypal-action-link" href="#" target="_blank" class="action-btn btn-paypal" onclick="handlePayPalClick(event)">
+          <span id="paypal-btn-text">Gift $35 with PayPal</span>
+        </a>
+
+        <div class="handle-row">
+          <span class="handle-text" id="paypal-handle">paypal.me/bmwebcast</span>
+          <button class="copy-icon-btn" onclick="copyText('paypal-handle', 'PayPal Link')">Copy</button>
+        </div>
+
+        <button class="qr-toggle-btn" onclick="toggleQR('paypal-qr')">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+          <span>Click here to view QR Code</span>
+        </button>
+
+        <div id="paypal-qr" class="qr-expandable">
+          <div class="qr-box">
+            <img id="paypal-img" class="qr-img" src="qr-paypal.png" alt="PayPal QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="qr-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+              <span>Drop PayPal QR</span>
+              <small id="paypal-filename">qr-paypal.png</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zelle Card -->
+      <div class="donation-card zelle">
+        <div class="card-header">
+          <span class="service-title title-zelle">Zelle</span>
+        </div>
+
+        <button id="zelle-action-btn" class="action-btn btn-zelle" onclick="handleZelleCopy(this)">
+          <span id="zelle-btn-text">Copy Zelle Recipient ($35)</span>
+        </button>
+
+        <div class="handle-row">
+          <span class="handle-text" id="zelle-handle">motorbikematt@gmail.com</span>
+          <button class="copy-icon-btn" onclick="copyText('zelle-handle', 'Zelle Recipient')">Copy</button>
+        </div>
+
+        <button class="qr-toggle-btn" onclick="toggleQR('zelle-qr')">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+          <span>Click here to view QR Code</span>
+        </button>
+
+        <div id="zelle-qr" class="qr-expandable">
+          <div class="qr-box">
+            <img id="zelle-img" class="qr-img" src="qr-zelle.png" alt="Zelle QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="qr-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v3h-2v-3zm2 2h3v3h-3v-3zm-5 1h3v2h-3v-2zm5-8h-2v2h2V7zm-3 0h-2v2h2V7z"/></svg>
+              <span>Drop Zelle QR</span>
+              <small id="zelle-filename">qr-zelle.png</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="payment-note" id="payment-note"></p>
+
+    <!-- Below the fold: Description of donations -->
+    <section class="description-section" id="description-wrapper">
+      <h2 class="section-title" id="section-title">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span id="section-heading-text">Supporting the Webcast</span>
+      </h2>
+
+      <div class="description-content" id="description-content">
+        <p>
+          For 13 years, the Live Webcast has connected the global Burner community directly to the art, dust storms, sunrises, and burns of Black Rock City. It is a labor of love gifted to those who cannot be on playa, created by an independent volunteer team.
+        </p>
+        <p>
+          We operate as an <strong>independently funded department</strong>. While the Burning Man Project generously provides essential on-playa foundations—including shipping container studio space, site power, credentials, volunteer meals, and high-speed internet with IT support staff—all specialized broadcast cameras, optics, rigging, and operational costs are sustained entirely by community donations.
+        </p>
+
+        <div class="breakdown-grid" id="breakdown-grid">
+          <div class="breakdown-item">
+            <h3>24/7 Live Playa Art Window</h3>
+            <p>Bringing the sights, ambient energy, and community of Black Rock City to viewers, regional groups, and Burners around the world.</p>
+          </div>
+          <div class="breakdown-item">
+            <h3>Playa-Proof Cameras & Optics</h3>
+            <p>High-definition robotic PTZ cameras, protective optical filters, and sealed dome enclosures engineered to withstand caustic alkaline dust.</p>
+          </div>
+          <div class="breakdown-item">
+            <h3>Studio Infrastructure & Power</h3>
+            <p>Container mounting masts, signal switchers, weatherized cabling, and UPS power conditioning to protect sensitive broadcast electronics.</p>
+          </div>
+          <div class="breakdown-item">
+            <h3>Volunteer Operations & Sustainability</h3>
+            <p>Helping sustain 13 years of volunteer technical dedication by offsetting equipment freight, secure year-round storage, and out-of-pocket expenses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p id="site-footer">&copy; Live Webcast Project &bull; Thank you for keeping the stream alive!</p>
+    </footer>
+  </div>
+
+  <!-- Toast Element -->
+  <div id="toast" class="toast">
+    <svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    <span id="toast-msg">Copied to clipboard!</span>
+  </div>
+
+  <script>
+    let currentAmount = 35;
+    let siteConfig = {
+      venmoHandle: '@motorbikematt',
+      cashappHandle: '$motorbikematt',
+      paypalHandle: 'paypal.me/bmwebcast',
+      zelleHandle: 'motorbikematt@gmail.com'
+    };
+
+    function updateActionLinks() {
+      const amt = currentAmount ? currentAmount : '';
+      const amtStr = amt ? ` ($${amt})` : '';
+      const amtPlain = amt ? `$${amt}` : 'Donation';
+
+      // Update button labels
+      document.getElementById('venmo-btn-text').textContent = `Gift ${amtPlain} with Venmo`;
+      document.getElementById('cashapp-btn-text').textContent = `Gift ${amtPlain} with Cash App`;
+      document.getElementById('paypal-btn-text').textContent = `Gift ${amtPlain} with PayPal`;
+      document.getElementById('zelle-btn-text').textContent = `Copy Zelle Recipient${amtStr}`;
+
+      // Update Cash App link
+      let cleanCashtag = siteConfig.cashappHandle.replace(/^\$/, '');
+      const cashappUrl = `https://cash.app/$${cleanCashtag}${amt ? '/' + amt : ''}`;
+      document.getElementById('cashapp-action-link').href = cashappUrl;
+
+      // Update PayPal link
+      let rawPaypal = siteConfig.paypalHandle.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/^paypal\.me\//, '');
+      const paypalUrl = `https://www.paypal.com/paypalme/${rawPaypal}/${amt ? amt + 'USD' : ''}`;
+      document.getElementById('paypal-action-link').href = paypalUrl;
+    }
+
+    function trackDonationClick(service) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'donation_click', {
+          payment_service: service,
+          donation_amount: currentAmount || 0
+        });
+      }
+    }
+
+    function setDonationAmount(amount, btnElement) {
+      currentAmount = parseInt(amount, 10);
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+      const customInput = document.getElementById('custom-amount-input');
+      if (customInput) customInput.value = '';
+      updateActionLinks();
+    }
+
+    function setCustomAmount(val) {
+      const parsed = parseInt(val, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        currentAmount = parsed;
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      } else if (val === '') {
+        currentAmount = 0;
+      }
+      updateActionLinks();
+    }
+
+    function handleVenmoClick(e) {
+      trackDonationClick('venmo');
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const cleanHandle = siteConfig.venmoHandle.replace(/^@/, '');
+      const note = encodeURIComponent('BM Webcast Donation');
+
+      if (isMobile) {
+        const appUrl = `venmo://paycharge?txn=pay&recipients=${cleanHandle}&amount=${currentAmount || ''}&note=${note}`;
+        window.location.href = appUrl;
+        e.preventDefault();
+      } else {
+        document.getElementById('venmo-action-link').href = `https://www.venmo.com/u/${cleanHandle}`;
+      }
+    }
+
+    function handleCashAppClick(e) {
+      trackDonationClick('cashapp');
+      let cleanCashtag = siteConfig.cashappHandle.replace(/^\$/, '');
+      const cashappUrl = `https://cash.app/$${cleanCashtag}${currentAmount ? '/' + currentAmount : ''}`;
+      document.getElementById('cashapp-action-link').href = cashappUrl;
+    }
+
+    function handlePayPalClick(e) {
+      trackDonationClick('paypal');
+    }
+
+    function handleZelleCopy(btn) {
+      trackDonationClick('zelle');
+      const recipient = siteConfig.zelleHandle;
+      navigator.clipboard.writeText(recipient).then(() => {
+        showToast(`Copied Zelle recipient: ${recipient}`);
+        btn.classList.add('btn-copied');
+        document.getElementById('zelle-btn-text').textContent = '✓ Copied to Clipboard!';
+        setTimeout(() => {
+          btn.classList.remove('btn-copied');
+          updateActionLinks();
+        }, 2200);
+      });
+    }
+
+    function copyText(elementId, label) {
+      const text = document.getElementById(elementId).textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Copied ${label}: ${text}`);
+      });
+    }
+
+    function toggleQR(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    async function loadMarkdownContent() {
+      try {
+        const response = await fetch('content.md?t=' + Date.now());
+        if (!response.ok) return;
+        const text = await response.text();
+
+        let frontMatter = {};
+        let markdownBody = text;
+
+        const fmMatch = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+        if (fmMatch && typeof jsyaml !== 'undefined') {
+          try {
+            frontMatter = jsyaml.load(fmMatch[1]) || {};
+            markdownBody = fmMatch[2];
+          } catch (e) {
+            console.warn('YAML parsing failed:', e);
+          }
+        }
+
+        if (frontMatter.badge) document.getElementById('site-badge').textContent = frontMatter.badge;
+        if (frontMatter.title) {
+          document.getElementById('site-title').textContent = frontMatter.title;
+          document.title = frontMatter.title + ' | Donations';
+        }
+        if (frontMatter.subtitle) document.getElementById('site-subtitle').textContent = frontMatter.subtitle;
+
+        // Venmo
+        if (frontMatter.venmo) {
+          if (frontMatter.venmo.handle) {
+            siteConfig.venmoHandle = frontMatter.venmo.handle;
+            document.getElementById('venmo-handle').textContent = frontMatter.venmo.handle;
+          }
+          if (frontMatter.venmo.qr_image) {
+            document.getElementById('venmo-img').src = frontMatter.venmo.qr_image;
+            document.getElementById('venmo-filename').textContent = frontMatter.venmo.qr_image;
+          }
+        }
+
+        // Cash App
+        if (frontMatter.cashapp) {
+          if (frontMatter.cashapp.handle) {
+            siteConfig.cashappHandle = frontMatter.cashapp.handle;
+            document.getElementById('cashapp-handle').textContent = frontMatter.cashapp.handle;
+          }
+          if (frontMatter.cashapp.qr_image) {
+            document.getElementById('cashapp-img').src = frontMatter.cashapp.qr_image;
+            document.getElementById('cashapp-filename').textContent = frontMatter.cashapp.qr_image;
+          }
+        }
+
+        // PayPal
+        if (frontMatter.paypal) {
+          if (frontMatter.paypal.handle) {
+            siteConfig.paypalHandle = frontMatter.paypal.handle;
+            document.getElementById('paypal-handle').textContent = frontMatter.paypal.handle;
+          }
+          if (frontMatter.paypal.qr_image) {
+            document.getElementById('paypal-img').src = frontMatter.paypal.qr_image;
+            document.getElementById('paypal-filename').textContent = frontMatter.paypal.qr_image;
+          }
+        }
+
+        // Zelle
+        if (frontMatter.zelle) {
+          if (frontMatter.zelle.handle) {
+            siteConfig.zelleHandle = frontMatter.zelle.handle;
+            document.getElementById('zelle-handle').textContent = frontMatter.zelle.handle;
+          }
+          if (frontMatter.zelle.qr_image) {
+            document.getElementById('zelle-img').src = frontMatter.zelle.qr_image;
+            document.getElementById('zelle-filename').textContent = frontMatter.zelle.qr_image;
+          }
+        }
+
+        if (frontMatter.google_analytics_id && frontMatter.google_analytics_id !== 'G-XXXXXXXXXX') {
+          const gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(frontMatter.google_analytics_id);
+          document.head.appendChild(gaScript);
+
+          gtag('js', new Date());
+          gtag('config', frontMatter.google_analytics_id);
+        }
+
+        if (frontMatter.footer) {
+          document.getElementById('site-footer').textContent = frontMatter.footer;
+        }
+
+        if (frontMatter.payment_note) {
+          const paymentNoteEl = document.getElementById('payment-note');
+          if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
+            paymentNoteEl.innerHTML = DOMPurify.sanitize(marked.parseInline(frontMatter.payment_note));
+          } else {
+            paymentNoteEl.textContent = frontMatter.payment_note;
+          }
+        }
+
+        // Markdown Body
+        function escapeHtml(str) {
+          const div = document.createElement('div');
+          div.textContent = str;
+          return div.innerHTML;
+        }
+
+        if (markdownBody && typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
+          const h2Match = markdownBody.match(/^##\s+(.+)$/m);
+          if (h2Match) {
+            document.getElementById('section-heading-text').textContent = h2Match[1];
+          }
+
+          let bodyWithoutH2 = markdownBody.replace(/^##\s+.+$/m, '').trim();
+          const subSections = [];
+          const regexH3 = /###\s+([^\n]+)\n([\s\S]*?)(?=(?:###\s+|$))/g;
+          let match;
+          let introMarkdown = bodyWithoutH2;
+
+          const firstH3Index = bodyWithoutH2.search(/###\s+/);
+          if (firstH3Index !== -1) {
+            introMarkdown = bodyWithoutH2.slice(0, firstH3Index).trim();
+            const h3Block = bodyWithoutH2.slice(firstH3Index);
+            while ((match = regexH3.exec(h3Block)) !== null) {
+              subSections.push({ title: match[1].trim(), content: match[2].trim() });
+            }
+          }
+
+          const CLOSING_TITLES = ['The Ask'];
+          const FULL_WIDTH_TITLES = ['A Note on YouTube'];
+          const gridSections = subSections.filter(sub => !CLOSING_TITLES.includes(sub.title) && !FULL_WIDTH_TITLES.includes(sub.title));
+          const closingSections = subSections.filter(sub => CLOSING_TITLES.includes(sub.title));
+          const fullWidthSections = subSections.filter(sub => FULL_WIDTH_TITLES.includes(sub.title));
+
+          let renderedHtml = marked.parse(introMarkdown);
+          if (gridSections.length > 0) {
+            renderedHtml += '<div class="breakdown-grid">';
+            for (const sub of gridSections) {
+              renderedHtml += `<div class="breakdown-item"><h3>${escapeHtml(sub.title)}</h3><p>${marked.parseInline(sub.content)}</p></div>`;
+            }
+            renderedHtml += '</div>';
+          }
+          for (const sub of closingSections) {
+            renderedHtml += `<div class="breakdown-closing"><p>${marked.parseInline(sub.content)}</p></div>`;
+          }
+          for (const sub of fullWidthSections) {
+            renderedHtml += `<div class="breakdown-note"><h3>${escapeHtml(sub.title)}</h3><p>${marked.parseInline(sub.content)}</p></div>`;
+          }
+          document.getElementById('description-content').innerHTML = DOMPurify.sanitize(renderedHtml);
+        }
+
+        updateActionLinks();
+      } catch (err) {
+        console.log('Error loading content', err);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        loadMarkdownContent();
+        updateActionLinks();
+      });
+    } else {
+      loadMarkdownContent();
+      updateActionLinks();
+    }
+  </script>
 </body>
 </html>
